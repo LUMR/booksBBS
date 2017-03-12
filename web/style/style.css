@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+body,ul,li,h1,h2,h3,h4,h5,h6,dl,dt,dd,p{margin:0; padding:0;}
+body{font-size:12px;}
+#container{width:980px; margin:0 auto;}
+#header{padding:5px 0 0 0; border-bottom:4px solid #dbecf4;}
+#userInfo{background-color:#e0f0f9; padding:5px;}
+#content th{background-color:#f3f8ef; color: #659b28; border-bottom:1px solid #daebcd;}
+#content table tr th,#content table tr td{height:35px; vertical-align:middle;}
+/*#content table tr td,#content table tr th{border-bottom:1px solid #d4eff7; border-right:1px solid #d4eff7;}*/
+#content table{border-collapse:collapse;}
+
+#content table td span{color:#818a89;}
+#content table td hr{border:1px solid #d4eff7;}
+#content p{text-align:center;}
+#content table tr td p{text-align:center; text-indent:2em;}
+#content form{border:1px solid #a6cbe7;}
+.textAlignCenter{text-align:center;}
+#footer{padding:20px 0 10px 0; text-align:center; color:#818a89;}
+a{text-decoration:none; color:#2f5fa1;}
+a:hover{text-decoration:underline;}
+#smallNav{font-weight:bold; padding:10px 5px;}
+#Ttitle{padding:10px; background-color:#e0f0f9; font-weight:bold;}
+.textAlignleft{text-align:left;}
+input,textarea{border:1px solid #a6cbe7;}
