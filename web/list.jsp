@@ -21,7 +21,7 @@
     </div>  <!--header end-->
 
     <div id="content">
-        <div id="smallNav">&gt;&gt; <a href="index.html">论坛首页</a> &gt;&gt; C#语言</div>
+        <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; C#语言</div>
         <div><a href="post.jsp"><img src="image/post.gif" /></a><br />
             <a href="#">上一页</a> <a href="#">下一页</a>
         </div>

@@ -1,4 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--
+  Created by IntelliJ IDEA.
+  User: lumr
+  Date: 2017/3/12
+  Time: 下午3:06
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,7 +23,7 @@
   </div>  <!--header end-->
   
   <div id="content">
-    <div id="smallNav">&gt;&gt; <a href="index.html">论坛首页</a> &gt;&gt; <a href="reg.jsp">用户注册</a></div>
+    <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <a href="reg.jsp">用户注册</a></div>
     <form>
       <p><label>用户名:<input type="text" /></label></p>
       <p><label>密&nbsp;&nbsp;码:<input type="password" /></label></p>

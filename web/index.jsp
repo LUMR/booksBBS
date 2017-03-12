@@ -33,26 +33,26 @@
           </tr>
           <%
               MainBoardService mainBoardService = new MainBoardServiceImpl();
-              List<MainBoard> Mlist = mainBoardService.getAllMainBoard();
+              List<MainBoard> M_list = mainBoardService.getAllMainBoard();
               SonBoardService sonBoardService = new SonBoardServiceImpl();
-              for (int i = 0; i < Mlist.size(); i++) {
+              for (int i = 0; i < M_list.size(); i++) {
 
           %>
           <tr>
-              <td colspan="4"><%=Mlist.get(i).getName()%></td>
+              <td colspan="4"><%=M_list.get(i).getName()%></td>
           </tr>
           <%
-                List<SonBoard> Slist = sonBoardService.getAllSonBoard(Mlist.get(i));
-              for (int j = 0; j < Slist.size(); j++) {
+                List<SonBoard> S_list = sonBoardService.getAllSonBoard(M_list.get(i));
+                for (int j = 0; j < S_list.size(); j++) {
           %>
           <tr>
           <td width="5%">&nbsp;</td>
-          <td><img src="image/board.gif" /> <a href="list.jsp"><%=Slist.get(j).getName()%></a></td>
+          <td><img src="image/board.gif" /> <a href="list.jsp"><%=S_list.get(j).getName()%></a></td>
           <td class="textAlignCenter">14</td>
           <td>uuu<br />teacher <span> [ 2008-11-12 14:08 ]</span></td>
         </tr>
           <%
-                  }
+                }
               }
           %>
       </table>

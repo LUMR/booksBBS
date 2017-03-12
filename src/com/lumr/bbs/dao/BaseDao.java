@@ -27,19 +27,20 @@ public class BaseDao {
             //指定数据库驱动
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("找不到数据库驱动");
         }
         try {
             conn = DriverManager.getConnection(url+urlDefault,name,password);
         } catch (SQLException e) {
 //            e.printStackTrace();
-            System.out.println("数据库连接失败，改用远程连接。");
+//            System.out.println("数据库连接失败，改用远程连接。");
             url = "jdbc:mysql://192.168.1.107:3306/bbs";
             try {
                 conn = DriverManager.getConnection(url+urlDefault,name,password);
             } catch (SQLException e1) {
 //                e1.printStackTrace();
-                System.out.println("远程连接失败。");
+                System.out.println("远程连接失败。系统停止");
                 System.exit(0);
             }
         }
