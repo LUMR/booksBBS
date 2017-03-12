@@ -13,7 +13,9 @@
 </head>
 
 <body>
-
+<%
+    String mess = (String)request.getAttribute("mess");
+%>
 <div id="container">
     <div id="header">
         <img src="image/logo.gif" />
@@ -37,6 +39,9 @@
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="登录" /></td>
+                </tr>
+                <tr>
+                    <td><%=(mess!=null)?mess:"dd"%></td>
                 </tr>
             </table>
         </form>

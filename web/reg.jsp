@@ -23,15 +23,17 @@
   </div>  <!--header end-->
   
   <div id="content">
+      <strong><%=request.getAttribute("mess")%></strong>
     <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <a href="reg.jsp">用户注册</a></div>
-    <form>
-      <p><label>用户名:<input type="text" /></label></p>
-      <p><label>密&nbsp;&nbsp;码:<input type="password" /></label></p>
-      <p><label>重复密码:<input type="password" /></label></p>
-      <p>
-        性别:&nbsp;&nbsp;<input type="radio" name="sex" />男
-        <input type="radio" name="sex" />女
-        <br />请选择头像
+    <form action="register.jsp" method="post">
+      <p><label>用户名:<input type="text" name="username"/></label></p>
+      <p><label>密&nbsp;&nbsp;码:<input type="password" name="password"/></label></p>
+      <p><label>重复密码:<input type="password" name="password1"/></label></p>
+        <p>
+            性别:&nbsp;&nbsp;<input type="radio" name="sex" value="男人"/>男
+            <input type="radio" name="sex" value="妹纸"/>女
+            <input type="radio" name="sex" value="扶她"/>秘密
+            <br />请选择头像
       </p>
       <p>
         <img src="image/head/1.gif"/><input type="radio" name="head" value="1.gif" checked="checked">

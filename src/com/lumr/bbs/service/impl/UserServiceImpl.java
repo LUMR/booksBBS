@@ -9,25 +9,28 @@ import com.lumr.bbs.vo.User;
  */
 public class UserServiceImpl implements UserService {
     @Override
-    public void register(User user) {
+    public int register(User user) {
         UserDaoImpl userDao = new UserDaoImpl();
         int isExist = userDao.isExist(user);
         switch (isExist){
             case 0:
-                if (userDao.save(user)>0)
+                if (userDao.save(user)>0) {
                     System.out.println("注册成功.");
-                break;
+                    return 1;
+                }
+                return -1;
             case 1:
                 System.out.println("用户已存在.");
-                break;
+                return 0;
             case -1:
                 System.out.println("数据库连接错误,请稍后重试");
-                break;
+                return -1;
         }
+        return -1;
     }
 
     @Override
-    public void login(User user) {
+    public int login(User user) {
         UserDaoImpl userDao = new UserDaoImpl();
         int login = userDao.login(user);
         switch (login){
@@ -44,6 +47,7 @@ public class UserServiceImpl implements UserService {
                 System.out.println("数据库连接错误,请稍后重试");
                 break;
         }
+        return login;
     }
 
     @Override
@@ -62,4 +66,5 @@ public class UserServiceImpl implements UserService {
                 break;
         }
     }
+
 }

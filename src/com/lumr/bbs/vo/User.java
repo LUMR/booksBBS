@@ -11,6 +11,7 @@ public class User {
     private String name;
     private String password;
     private String gender;
+    private String head;
     private Date regDate;
 
     public User() {
@@ -40,10 +41,11 @@ public class User {
      * @param password 密码
      * @param gender 性别
      */
-    public User(String name, String password, String gender) {
+    public User(String name, String password, String gender, String head) {
         this.name = name;
         this.password = password;
         this.gender = gender;
+        this.head = head;
         this.regDate = new Date();
     }
 
@@ -95,5 +97,13 @@ public class User {
 
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
     }
 }

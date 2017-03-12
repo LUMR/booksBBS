@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.lumr.bbs.service.UserService" %>
+<%@ page import="com.lumr.bbs.service.impl.UserServiceImpl" %>
+<%@ page import="com.lumr.bbs.vo.User" %><%--
   Created by IntelliJ IDEA.
   User: lumr
   Date: 2017/3/12
@@ -8,10 +10,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>注册成功</title>
+    <title>登陆模块</title>
     <link href="style/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<%
+    //验证注册信息
+    String name = request.getParameter("name");
+    String password = request.getParameter("password");
+    UserService userService = new UserServiceImpl();
+    User user = new User(name,password);
+    switch (userService.login(user)){
+        case 1:
+            request.setAttribute("mess","登陆成功");
+            Cookie cookie = new Cookie("user",user.getName());
+            response.addCookie(cookie);
+            response.sendRedirect("index.jsp");
+            break;
+        case 0:
+            request.setAttribute("mess","没有此用户，请重试");
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+            break;
+        case -2:
+            request.setAttribute("mess","密码错误");
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+            break;
+        case -1:
+            request.setAttribute("mess","数据库连接错误");
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+            break;
+    }
+
+
+
+%>
+
 <div id="container">
     <div id="header">
         <img src="image/logo.gif" />
@@ -26,8 +59,7 @@
 //        request.setCharacterEncoding("UTF-8");
         //设置响应的编码方式：
 //        response.setCharacterEncoding("UTF-8");
-        String name = request.getParameter("name");
-        String password = request.getParameter("password");
+
     %>
     <ul>
         <li>你的名字是：<span><%=name%></span></li>
@@ -36,5 +68,6 @@
     <hr>
     <strong>感谢你的注册！</strong>
 </div>
+
 </body>
 </html>

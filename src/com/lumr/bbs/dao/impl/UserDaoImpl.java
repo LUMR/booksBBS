@@ -15,7 +15,7 @@ import java.util.List;
 public class UserDaoImpl extends BaseDao implements UserDao {
 
     public static void main(String[] args) {
-        User my = new User("A2","nierauto","女");
+        User my = new User("A2","nierauto","女","null");
         UserDaoImpl test = new UserDaoImpl();
         String password = test.sha1(my.getPassword());
         int result = test.login(my);
@@ -62,13 +62,14 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     @Override
     public int save(User user) {
         conn = getConn();
-        String sql = "insert into user(name,password,gender,regDate) values (?,sha1(?),?,?)";
+        String sql = "insert into user(name,password,gender,regDate,head) values (?,sha1(?),?,?,?)";
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,user.getName());
             pstmt.setString(2,user.getPassword());
             pstmt.setString(3,user.getGender());
             pstmt.setObject(4,user.getRegDate());
+            pstmt.setString(5,user.getHead());
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
