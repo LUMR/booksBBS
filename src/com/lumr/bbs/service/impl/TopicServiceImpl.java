@@ -18,6 +18,12 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public Topic getTopicById(int id, SonBoard sonBoard) {
+        TopicDaoImpl topicDao = new TopicDaoImpl();
+        return topicDao.getTopicById(id,sonBoard);
+    }
+
+    @Override
     public void addTopic(Topic topic) {
         TopicDaoImpl topicDao = new TopicDaoImpl();
         int result = topicDao.addTopic(topic);

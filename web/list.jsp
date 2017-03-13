@@ -62,7 +62,7 @@
             %>
             <tr>
                 <td width="5%" class="textAlignCenter"><img src="image/topic.gif" /></td>
-                <td> <a href=<%="detail.jsp?tid="+aTopic.getId()%>><%=aTopic.getTitle()%></a></td>
+                <td><a href=<%="detail.jsp?sid="+sonBoard.getId()+"&tid="+aTopic.getId()%>><%=aTopic.getTitle()%></a></td>
                 <td class="textAlignCenter"><%=aTopic.getUser().getName()%></td>
                 <td class="textAlignCenter">1</td>
             </tr>

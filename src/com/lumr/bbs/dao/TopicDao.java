@@ -13,6 +13,8 @@ public interface TopicDao {
     List<Topic> get(SonBoard sonBoard);
     List<Topic> getBySid(int sid);
 
+    Topic getTopicById(int tid,SonBoard sonBoard);
+
     int addTopic(Topic topic);
     int deleteTopic(Topic topic);
 }

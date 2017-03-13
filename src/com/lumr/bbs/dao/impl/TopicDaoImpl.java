@@ -61,6 +61,27 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
     }
 
     @Override
+    public Topic getTopicById(int tid, SonBoard sonBoard) {
+        getConn();
+        String sql = "select id,title,content,createDate,sid,uid from topic where id = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,tid);
+            result = pstmt.executeQuery();
+            if (result.next()){
+                Topic topic = new Topic(result.getInt(1),result.getString(2),
+                        result.getString(3),result.getDate(4),sonBoard,
+                        new User(result.getInt(6)));
+                topic.setUser();
+                return topic;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public int addTopic(Topic topic) {
         String sql = "insert into topic(title,content,createDate,sid,uid)" +
                 "values(?,?,?,?,?)";
