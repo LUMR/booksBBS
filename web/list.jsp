@@ -1,13 +1,11 @@
-<%@ page import="com.lumr.bbs.service.TopicService" %>
-<%@ page import="com.lumr.bbs.service.impl.TopicServiceImpl" %>
-<%@ page import="com.lumr.bbs.vo.SonBoard" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: lumr
   Date: 2017/3/9
   Time: 下午10:10
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>欢迎访问擎华教育论坛</title>

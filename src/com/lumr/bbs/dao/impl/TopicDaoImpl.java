@@ -19,7 +19,7 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
     public List<Topic> get(SonBoard sonBoard) {
         getConn();
         String sql = "select id,title,content,createDate,sid,uid " +
-                "from topic where sid = ?";
+                "from topic where sid = ? order by createDate desc";
         List<Topic> list = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement(sql);
