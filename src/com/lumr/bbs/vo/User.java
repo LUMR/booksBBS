@@ -15,6 +15,7 @@ public class User {
     private Date regDate;
 
     public User() {
+        name = "无";
     }
 
     /**

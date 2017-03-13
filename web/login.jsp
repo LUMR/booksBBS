@@ -21,7 +21,7 @@
         <img src="image/logo.gif" />
         <br/><br/>
         <div id="userInfo">
-            您尚未&nbsp;&nbsp; <a href="login.jsp">登录</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="reg.jsp">注册</a>&nbsp;&nbsp; |
+            您尚未&nbsp;&nbsp; <a href="login.jsp">登录</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="register.jsp">注册</a>&nbsp;&nbsp; |
         </div> <!--userInfo end-->
     </div>  <!--header end-->
 
@@ -41,7 +41,7 @@
                     <td colspan="2"><input type="submit" value="登录" /></td>
                 </tr>
                 <tr>
-                    <td><%=(mess!=null)?mess:"dd"%></td>
+                    <td class="message"><%=(mess!=null)?mess:""%></td>
                 </tr>
             </table>
         </form>

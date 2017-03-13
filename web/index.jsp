@@ -29,26 +29,48 @@
           </tr>
           <%
               MainBoardService mainBoardService = new MainBoardServiceImpl();
-              List<MainBoard> M_list = mainBoardService.getAllMainBoard();
               SonBoardService sonBoardService = new SonBoardServiceImpl();
-              for (int i = 0; i < M_list.size(); i++) {
+              TopicService topicService = new TopicServiceImpl();
+              List<MainBoard> M_list = mainBoardService.getAllMainBoard();
+              String url = "";
+
+              for (MainBoard aM_list : M_list) {
 
           %>
           <tr>
-              <td colspan="4"><%=M_list.get(i).getName()%></td>
+              <td colspan="4"><%=aM_list.getName()%>
+              </td>
           </tr>
           <%
-                  List<SonBoard> S_list = sonBoardService.getAllSonBoard(M_list.get(i));
-                  for (int j = 0; j < S_list.size(); j++) {
+              //获取子板块
+              List<SonBoard> S_list = sonBoardService.getAllSonBoard(aM_list);
+              for (SonBoard aS_list : S_list) {
+                  //获取子板块主题
+                  List<Topic> T_list = topicService.getAllTopic(aS_list);
           %>
           <tr>
               <td width="5%">&nbsp;</td>
-              <td><img src="image/board.gif" /><a href="list.jsp"><%=S_list.get(j).getName()%></a></td>
-              <td class="textAlignCenter">14</td>
-              <td>uuu<br />teacher <span> [ 2008-11-12 14:08 ]</span></td>
+              <td><img src="image/board.gif"/>
+                  <a href=<%="list.jsp?sid="+aS_list.getId()%>><%=aS_list.getName()%></a>
+              </td>
+              <%
+                  if (T_list.size() == 0){
+
+              %>
+              <td class="textAlignCenter">0</td>
+              <td>0<br/>无&nbsp;<span>1970-1-1</span></td>
+              <%
+                  }else{
+                      url = "detail.jsp?sid="+aS_list.getId()+"&tid="+T_list.get(0).getId();
+              %>
+              <td class="textAlignCenter"><%=T_list.size()%></td>
+              <td><a href=<%=url%>><%=T_list.get(0).getTitle()%></a><br/><%=T_list.get(0).getUser().getName()%>
+                  <span><%=T_list.get(0).getCreateDate()%></span>
+              </td>
           </tr>
           <%
                   }
+              }
               }
           %>
       </table>

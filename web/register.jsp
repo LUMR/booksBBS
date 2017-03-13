@@ -1,52 +1,62 @@
-<%@ page import="com.lumr.bbs.vo.User" %>
-<%@ page import="com.lumr.bbs.service.UserService" %>
-<%@ page import="com.lumr.bbs.service.impl.UserServiceImpl" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: lumr
   Date: 2017/3/12
-  Time: 下午9:28
+  Time: 下午3:06
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>注册模块</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎访问擎华教育论坛</title>
+<link href="style/style.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<%
-    /**
-     * 判断是否有东西没填
-     */
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
-    String password1 = request.getParameter("password1");
-    String sex = request.getParameter("sex");
-    String head = request.getParameter("head");
-    if (username == "" || password == "" || password1 == "" || sex == ""
-            || head == ""){
-        request.setAttribute("mess","请完整填写信息。");
-        request.getRequestDispatcher("reg.jsp").forward(request,response);
-    }
-%>
 
-<%
-    User user = new User(username,password,sex,head);
-    UserService userService = new UserServiceImpl();
-    int result = userService.register(user);
-    switch (result){
-        case 1:
-            out.println("注册成功");
-            out.print(user);
-            break;
-        case 0:
-            request.setAttribute("mess","用户已存在");
-            request.getRequestDispatcher("reg.jsp").forward(request,response);
-            break;
-        case -1:
-            request.setAttribute("mess","数据库错误，请重试");
-            request.getRequestDispatcher("reg.jsp").forward(request,response);
-            break;
-    }
-%>
+<body>
+<div id="container">
+    <%--header--%>
+    <%@include file="header.jsp"%>
+  
+  <div id="content">
+    <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <a href="register.jsp">用户注册</a></div>
+    <form action="register_update.jsp" method="post">
+      <p><label>用户名:<input type="text" name="username"/></label></p>
+      <p><label>密&nbsp;&nbsp;码:<input type="password" name="password"/></label></p>
+      <p><label>重复密码:<input type="password" name="password1"/></label></p>
+        <p>
+            性别:&nbsp;&nbsp;<input type="radio" name="sex" value="男人"/>男
+            <input type="radio" name="sex" value="妹纸"/>女
+            <input type="radio" name="sex" value="扶她"/>秘密
+            <br />请选择头像
+      </p>
+      <p>
+        <img src="image/head/1.gif"/><input type="radio" name="head" value="1.gif" checked="checked">
+		<img src="image/head/2.gif"/><input type="radio" name="head" value="2.gif">
+		<img src="image/head/3.gif"/><input type="radio" name="head" value="3.gif">
+		<img src="image/head/4.gif"/><input type="radio" name="head" value="4.gif">
+		<img src="image/head/5.gif"/><input type="radio" name="head" value="5.gif">
+		<br/>
+		<img src="image/head/6.gif"/><input type="radio" name="head" value="6.gif">
+		<img src="image/head/7.gif"/><input type="radio" name="head" value="7.gif">
+		<img src="image/head/8.gif"/><input type="radio" name="head" value="8.gif">
+		<img src="image/head/9.gif"/><input type="radio" name="head" value="9.gif">
+		<img src="image/head/10.gif"/><input type="radio" name="head" value="10.gif">
+		<br/>
+		<img src="image/head/11.gif"/><input type="radio" name="head" value="11.gif">
+		<img src="image/head/12.gif"/><input type="radio" name="head" value="12.gif">
+		<img src="image/head/13.gif"/><input type="radio" name="head" value="13.gif">
+		<img src="image/head/14.gif"/><input type="radio" name="head" value="14.gif">
+		<img src="image/head/15.gif"/><input type="radio" name="head" value="15.gif">
+      </p>
+        <strong class="message"><%=request.getAttribute("mess")%></strong>
+      <p><input type="submit" value="注册" /></p>
+    </form>
+    
+  </div>  <!--content end-->
+
+    <%--footer--%>
+    <%@include file="footer.jsp"%>
+</div> <!--container end-->
 </body>
 </html>

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 子板块实现
  * Created by fsweb on 17-3-7.
  */
 public class SonBoardDaoImpl extends BaseDao implements SonBoardDao {

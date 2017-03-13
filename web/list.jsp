@@ -5,7 +5,7 @@
   Time: 下午10:10
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>欢迎访问擎华教育论坛</title>
@@ -13,12 +13,8 @@
 </head>
 <body>
 <div id="container">
-    <div id="header">
-        <img src="image/logo.gif" />
-        <div id="userInfo">
-            您尚未&nbsp;&nbsp; <a href="login.jsp">登录</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="reg.jsp">注册</a>&nbsp;&nbsp; |
-        </div> <!--userInfo end-->
-    </div>  <!--header end-->
+    <%--header--%>
+    <%@include file="header.jsp"%>
 
     <div id="content">
         <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; C#语言</div>
@@ -118,9 +114,9 @@
         </table>
         <div style="padding:10px;"><a href="#">上一页</a> <a href="#">下一页</a></div>
     </div>  <!--content end-->
-    <div id="footer">
-        2010 Guangzhou Qinghua Information Technology Co.,Ltd 版权所有
-    </div> <!--footer end-->
+
+    <%--footer--%>
+    <%@include file="footer.jsp"%>
 </div> <!--container end-->
 </body>
 </html>

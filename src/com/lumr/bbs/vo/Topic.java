@@ -22,6 +22,15 @@ public class Topic {
     private SonBoard sonBoard;
     private User user;
 
+    public Topic() {
+        id = 0;
+        title = "无";
+        content = "无";
+        createDate = new Date();
+        sonBoard = new SonBoard();
+        user = new User();
+    }
+
     public Topic(int id) {
         this.id = id;
     }

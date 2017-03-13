@@ -24,6 +24,7 @@
         case 1:
             request.setAttribute("mess","登陆成功");
             Cookie cookie = new Cookie("user",user.getName());
+            session.setAttribute("user",user);
             response.addCookie(cookie);
             response.sendRedirect("index.jsp");
             break;
@@ -49,7 +50,7 @@
     <div id="header">
         <img src="image/logo.gif" />
         <div id="userInfo">
-            您尚未&nbsp;&nbsp; <a href="login.jsp">登录</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="reg.jsp">注册</a>&nbsp;&nbsp; |
+            您尚未&nbsp;&nbsp; <a href="login.jsp">登录</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="register.jsp">注册</a>&nbsp;&nbsp; |
         </div> <!--userInfo end-->
     </div>  <!--header end-->
 </div>
