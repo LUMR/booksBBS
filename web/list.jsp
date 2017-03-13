@@ -1,4 +1,10 @@
-<%--
+<%@ page import="com.lumr.bbs.vo.SonBoard" %>
+<%@ page import="com.lumr.bbs.service.TopicService" %>
+<%@ page import="com.lumr.bbs.service.impl.TopicServiceImpl" %>
+<%@ page import="com.lumr.bbs.vo.Topic" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.lumr.bbs.service.SonBoardService" %>
+<%@ page import="com.lumr.bbs.service.impl.SonBoardServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: lumr
   Date: 2017/3/9
@@ -17,13 +23,30 @@
     <%@include file="header.jsp"%>
 
     <div id="content">
-
-        <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; C#语言</div>
+        <%
+            //获取子板块信息
+            int sid;
+            try {
+                sid = Integer.parseInt(request.getParameter("sid"));
+            }catch (NumberFormatException e){
+                sid = 0;
+                out.println("<h1>sid错误！</h1>");
+            }
+            SonBoardService sonBoardService = new SonBoardServiceImpl();
+            SonBoard sonBoard = sonBoardService.getSonBoard(sid);
+            if (sonBoard == null) {
+                out.print("<h2>没有此主版块</h2>");
+                return;
+            }else {
+        %>
+        <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <%=sonBoard.getName()%></div>
         <div>
             <a href="post.jsp"><img src="image/post.gif" /></a><br />
             <a href="#">上一页</a> <a href="#">下一页</a>
         </div>
-
+        <%
+            }
+        %>
         <!--文章列表-->
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
@@ -32,18 +55,20 @@
                 <th>回复</th>
             </tr>
             <%
-                int sid = Integer.getInteger(request.getParameter("sid"));
-                SonBoard sonBoard = new SonBoard();
+                //获取子文章
                 TopicService topicService = new TopicServiceImpl();
-                out.print(sid);
+                List<Topic> T_list = topicService.getAllTopic(sonBoard);
+                for (Topic aTopic: T_list) {
             %>
             <tr>
                 <td width="5%" class="textAlignCenter"><img src="image/topic.gif" /></td>
-                <td> <a href="detail.jsp">C#常量与变量解释</a></td>
-                <td class="textAlignCenter">teacher</td>
+                <td> <a href=<%="detail.jsp?tid="+aTopic.getId()%>><%=aTopic.getTitle()%></a></td>
+                <td class="textAlignCenter"><%=aTopic.getUser().getName()%></td>
                 <td class="textAlignCenter">1</td>
             </tr>
-
+            <%
+                }
+            %>
         </table>
         <div style="padding:10px;"><a href="#">上一页</a> <a href="#">下一页</a></div>
     </div>  <!--content end-->

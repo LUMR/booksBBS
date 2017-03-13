@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface SonBoardService {
     List<SonBoard> getAllSonBoard(MainBoard mainBoard);
+    SonBoard getSonBoard(int id);
     void addSonBoard(SonBoard sonBoard);
 }

@@ -101,6 +101,31 @@ public class SonBoardDaoImpl extends BaseDao implements SonBoardDao {
     }
 
     @Override
+    public SonBoard getSonBoardById(int id) {
+        getConn();
+        String sql = "select id,name,mid from sonBoard where id = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,id);
+            result = pstmt.executeQuery();
+            if (result.next()){
+                SonBoard sonBoard = new SonBoard();
+                sonBoard.setId(result.getInt("id"));
+                sonBoard.setName(result.getString("name"));
+                sonBoard.setMainBoard(new MainBoard(result.getInt("mid")));
+                return sonBoard;
+            }
+        } catch (SQLException e) {
+//            e.printStackTrace();
+            System.out.println("数据库连接错误.");
+        }
+        finally {
+            closeAll();
+        }
+        return null;
+    }
+
+    @Override
     public int add(SonBoard sonBoard) {
         String sql = "insert into sonBoard(name,mid) values(?,?)";
         Object[] obj = new Object[]{sonBoard.getName(),sonBoard.getMainBoard().getId()};

@@ -9,4 +9,10 @@ import java.util.List;
  */
 public interface MainBoardService {
     List<MainBoard> getAllMainBoard();
+
+    /**
+     * 根据id查主版块
+     * @return 如id不存在，返回null
+     */
+    MainBoard getMainBoardById(int id);
 }

@@ -25,6 +25,8 @@ public interface SonBoardDao {
      */
     List<SonBoard> getByMainName(String name);
 
+    SonBoard getSonBoardById(int id);
+
     /**
      * 重载
      * @param sonBoard 不需要定义id,只需name和mid

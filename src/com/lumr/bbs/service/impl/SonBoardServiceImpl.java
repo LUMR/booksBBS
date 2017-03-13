@@ -18,6 +18,12 @@ public class SonBoardServiceImpl implements SonBoardService {
         return sonBoardDao.get(mainBoard);
     }
 
+    @Override
+    public SonBoard getSonBoard(int id) {
+        SonBoardDaoImpl sonBoardDao = new SonBoardDaoImpl();
+        return sonBoardDao.getSonBoardById(id);
+    }
+
 
     @Override
     public void addSonBoard(SonBoard sonBoard) {
