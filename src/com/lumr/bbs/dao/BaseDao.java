@@ -1,18 +1,44 @@
 package com.lumr.bbs.dao;
 
+import com.sun.rowset.CachedRowSetImpl;
+
+import javax.sql.rowset.CachedRowSet;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
+ * 基础DAO
  * Created by fsweb on 17-3-6.
  */
 public class BaseDao {
+    private CachedRowSet crs;//行集
     protected Connection conn;//数据库连接
     protected PreparedStatement pstmt;
     protected Statement stmt;
     protected ResultSet result;
+
+    /**
+     * 测试
+     */
+    public static void main(String[] args) {
+        BaseDao baseDao = new BaseDao();
+        baseDao.getRowSet();
+        String sql = "select * from reply";
+        try {
+            baseDao.crs.setCommand(sql);
+            baseDao.crs.setPageSize(10);
+            baseDao.crs.execute();
+            while (baseDao.crs.next()) {
+                System.out.println(baseDao.crs.getString("content"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     /**
      * 连接数据库
@@ -48,6 +74,32 @@ public class BaseDao {
     }
 
     /**
+     * 创建行集
+     * @return 返回一个行集
+     */
+    public CachedRowSet getRowSet(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String url = "jdbc:mysql://192.168.1.107:3306/bbs";
+        String urlDefault = "??characterEncoding=utf8&useSSL=true";
+        String name = "webuser";
+        String password = "wwwlumr";
+        try {
+            crs = new CachedRowSetImpl();
+            crs.setUrl(url+urlDefault);
+            crs.setUsername(name);
+            crs.setPassword(password);
+        } catch (SQLException e) {
+//            e.printStackTrace();
+            System.out.println("数据库连接错误。");
+        }
+        return crs;
+    }
+
+    /**
      * 常用的prepareStatement的query方法,只适用于返回值只有一列
      * @param sql 查询语句
      * @param obj 参数的对象集合
@@ -77,8 +129,6 @@ public class BaseDao {
 
     /**
      * 常用的prepareStatement的update方法
-     * @param sql
-     * @param obj
      * @return 返回值-1表示数据库连接错误
      */
     public int preUpdate(String sql,Object[] obj){
