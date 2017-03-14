@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface ReplyDao {
     List<Reply> get(Topic topic);
+    int getReplyNum(Topic topic);
 
     int addReply(Reply reply);
 

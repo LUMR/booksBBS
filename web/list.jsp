@@ -59,6 +59,7 @@
                 TopicService topicService = new TopicServiceImpl();
                 List<Topic> T_list = topicService.getAllTopic(sonBoard);
                 for (Topic aTopic: T_list) {
+
             %>
             <tr>
                 <td width="5%" class="textAlignCenter"><img src="image/topic.gif" /></td>

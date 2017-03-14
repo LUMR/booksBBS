@@ -40,6 +40,27 @@ public class ReplyDaoImpl extends BaseDao implements ReplyDao {
     }
 
     @Override
+    public int getReplyNum(Topic topic) {
+        getConn();
+        String sql = "select count(*) from reply where tid = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, topic.getId());
+            result = pstmt.executeQuery();
+            if (result.next())
+                return result.getInt(1);
+            else
+                return 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeAll();
+        }
+        return 0;
+    }
+
+    @Override
     public int addReply(Reply reply) {
         String sql = "insert into reply(content,createDate,alterDate,uid,tid) " +
                 "values(?,?,?,?,?)";
