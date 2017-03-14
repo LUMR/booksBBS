@@ -44,19 +44,25 @@
         <a href="<%="list.jsp?sid="+sonBoard.getId()%>"><%=sonBoard.getName()%></a>
     </div>
         <form action="post_update.jsp" method="post">
-            <input name="sid" hidden="hidden" value="<%=sonBoard.getId()%>" >
+            <label>
+                <input name="sid" hidden="hidden" value="<%=sonBoard.getId()%>">
+            </label>
             <table cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <th colspan="2" class="textAlignleft">发表帖子</th>
                 </tr>
                 <tr>
                     <td width="15%">标题</td>
-                    <td><input type="text" name="title" size="50" value="<%=title!=null?title:""%>"/></td>
+                    <td><label>
+                        <input type="text" name="title" size="50" value="<%=title!=null?title:""%>"/>
+                    </label></td>
                 </tr>
                 <tr>
                     <td width="15%">内容</td>
                     <td>
-                    <textarea name="content" cols="80" rows="20" ><%=content!=null?content:""%></textarea><br />
+                        <label>
+                            <textarea name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
+                        </label><br />
                     (不能大于:1000字)
                     </td>
                 </tr>

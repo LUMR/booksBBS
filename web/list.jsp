@@ -4,7 +4,9 @@
 <%@ page import="com.lumr.bbs.vo.Topic" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.lumr.bbs.service.SonBoardService" %>
-<%@ page import="com.lumr.bbs.service.impl.SonBoardServiceImpl" %><%--
+<%@ page import="com.lumr.bbs.service.impl.SonBoardServiceImpl" %>
+<%@ page import="com.lumr.bbs.service.ReplyService" %>
+<%@ page import="com.lumr.bbs.service.impl.ReplyServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: lumr
   Date: 2017/3/9
@@ -58,14 +60,16 @@
                 //获取子文章
                 TopicService topicService = new TopicServiceImpl();
                 List<Topic> T_list = topicService.getAllTopic(sonBoard);
+                int replyNum;
                 for (Topic aTopic: T_list) {
-
+                    ReplyService replyService = new ReplyServiceImpl();
+                    replyNum = replyService.getReplyNum(aTopic);
             %>
             <tr>
                 <td width="5%" class="textAlignCenter"><img src="image/topic.gif" /></td>
                 <td><a href=<%="detail.jsp?sid="+sonBoard.getId()+"&tid="+aTopic.getId()%>><%=aTopic.getTitle()%></a></td>
                 <td class="textAlignCenter"><%=aTopic.getUser().getName()%></td>
-                <td class="textAlignCenter">1</td>
+                <td class="textAlignCenter"><%=replyNum%></td>
             </tr>
             <%
                 }

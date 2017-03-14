@@ -6,6 +6,7 @@ import com.lumr.bbs.vo.Topic;
 import java.util.List;
 
 /**
+ * 回复dao
  * Created by fsweb on 17-3-7.
  */
 public interface ReplyDao {

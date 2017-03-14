@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface ReplyService {
     List<Reply> getAllReply(Topic topic);
+    int getReplyNum(Topic topic);
     int addReply(Reply reply);
     void alterReply(Reply reply);
 }

@@ -1,5 +1,6 @@
 package com.lumr.bbs.service.impl;
 
+import com.lumr.bbs.dao.ReplyDao;
 import com.lumr.bbs.dao.impl.ReplyDaoImpl;
 import com.lumr.bbs.service.ReplyService;
 import com.lumr.bbs.vo.Reply;
@@ -15,6 +16,12 @@ public class ReplyServiceImpl implements ReplyService {
     public List<Reply> getAllReply(Topic topic) {
         ReplyDaoImpl replyDao = new ReplyDaoImpl();
         return replyDao.get(topic);
+    }
+
+    @Override
+    public int getReplyNum(Topic topic) {
+        ReplyDao replyDao = new ReplyDaoImpl();
+        return replyDao.getReplyNum(topic);
     }
 
     @Override
