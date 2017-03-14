@@ -18,13 +18,10 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public void addReply(Reply reply) {
+    public int addReply(Reply reply) {
         ReplyDaoImpl replyDao = new ReplyDaoImpl();
         int result = replyDao.addReply(reply);
-        if (result>0)
-            System.out.println("添加成功");
-        else
-            System.out.println("添加失败");
+        return result;
     }
 
     @Override

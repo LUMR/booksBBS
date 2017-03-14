@@ -25,9 +25,8 @@ public class ReplyDaoImpl extends BaseDao implements ReplyDao {
             result = pstmt.executeQuery();
             while (result.next()){
                 User user = new User(result.getInt(5));
-                Topic topic1 = new Topic(result.getInt(6));
-                Reply reply = new Reply(result.getInt(1),result.getString(2),result.getDate(3),
-                        result.getDate(4),user,topic1);
+                Reply reply = new Reply(result.getInt(1),result.getString(2),result.getTimestamp(3),
+                        result.getTimestamp(4),user,topic);
                 reply.setUser();
                 list.add(reply);
             }
@@ -42,7 +41,7 @@ public class ReplyDaoImpl extends BaseDao implements ReplyDao {
 
     @Override
     public int addReply(Reply reply) {
-        String sql = "insert into reply(content,createDate,alterDate,user,topic " +
+        String sql = "insert into reply(content,createDate,alterDate,uid,tid) " +
                 "values(?,?,?,?,?)";
         Object[] obj = new Object[]{reply.getContent(),reply.getCreateDate(),reply.getCreateDate(),
                 reply.getUser().getId(),reply.getTopic().getId()};

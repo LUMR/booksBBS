@@ -26,6 +26,7 @@
     <%@include file="header.jsp"%>
 
     <div id="content">
+        <!--获取子板块和文章信息-->
         <%
             //获取子板块信息
             int sid = 0;
@@ -52,10 +53,12 @@
         %>
         <div id="smallNav">
             &gt;&gt; <a href="index.jsp">论坛首页</a>
-            &gt;&gt; <a href=<%="list.jsp?sid="+sid%>><%=sonBoard.getName()%></a> &gt;&gt; 帖子信息
+            &gt;&gt; <a href="<%="list.jsp?sid="+sid%>"><%=sonBoard.getName()%></a> &gt;&gt; 帖子信息
         </div>
 
-        <div><a href="post.jsp"><img src="image/post.gif" /></a>&nbsp;&nbsp;<img src="image/reply.gif" /><br />
+        <div>
+            <a href="<%="post.jsp?sid="+sonBoard.getId()%>"><img src="image/post.gif" /></a>&nbsp;&nbsp;
+            <a href="" ><img src="image/reply.gif" /></a><br />
             <a href="#">上一页</a> <a href="#">下一页</a>
         </div>
 
@@ -100,6 +103,35 @@
             %>
         </table>
         <div style="padding:10px;"><a href="#">上一页</a> <a href="#">下一页</a></div>
+
+        <!--回复表单-->
+        <%
+            String mess = (String)request.getAttribute("mess");
+            String content = request.getParameter("content");
+        %>
+        <form action="reply_update.jsp" method="post">
+            <input name="tid" hidden="hidden" value="<%=topic.getId()%>">
+            <input name="sid" hidden="hidden" value="<%=sonBoard.getId()%>">
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <th colspan="2" class="textAlignleft">回复帖子</th>
+                </tr>
+                <tr>
+                    <td width="15%">内容</td>
+                    <td>
+                        <textarea name="content" cols="80" rows="20" ><%=content!=null?content:""%></textarea><br />
+                        (不能大于:1000字)
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+            <div class="textAlignCenter" style="padding:10px;">
+                <input type="submit"  value="提交"/>
+                <input type="reset" value="重置" />
+            </div>
+            <p class="message"><%=(mess != null)?mess:""%></p>
+        </form>
     </div>  <!--content end-->
 
     <%--footer--%>

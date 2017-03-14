@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<form action="post_update.jsp" method="post">
+<form action="reply_update.jsp" method="post">
     <input name="sid" hidden="hidden" value="<%=sonBoard.getId()%>" >
     <table cellpadding="0" cellspacing="0" width="100%">
         <tr>

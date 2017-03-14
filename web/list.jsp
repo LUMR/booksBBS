@@ -41,7 +41,7 @@
         %>
         <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <%=sonBoard.getName()%></div>
         <div>
-            <a href=<%="post.jsp?sid="+sonBoard.getId()%>><img src="image/post.gif" /></a><br />
+            <a href="<%="post.jsp?sid="+sonBoard.getId()%>"><img src="image/post.gif" /></a><br />
             <a href="#">上一页</a> <a href="#">下一页</a>
         </div>
         <%
