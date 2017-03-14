@@ -27,7 +27,7 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
             result = pstmt.executeQuery();
             while (result.next()){
                 Topic topic = new Topic(result.getInt(1),result.getString(2),
-                        result.getString(3),result.getDate(4),sonBoard,
+                        result.getString(3),result.getTimestamp(4),sonBoard,
                         new User(result.getInt(6)));
                 topic.setUser();
                 list.add(topic);
@@ -70,7 +70,7 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
             result = pstmt.executeQuery();
             if (result.next()){
                 Topic topic = new Topic(result.getInt(1),result.getString(2),
-                        result.getString(3),result.getDate(4),sonBoard,
+                        result.getString(3),result.getTimestamp(4),sonBoard,
                         new User(result.getInt(6)));
                 topic.setUser();
                 return topic;
@@ -86,7 +86,7 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
         String sql = "insert into topic(title,content,createDate,sid,uid)" +
                 "values(?,?,?,?,?)";
         Object[] obj = new Object[]{topic.getTitle(),topic.getContent(),topic.getCreateDate(),
-                topic.getUser().getId(),topic.getSonBoard().getId()};
+                topic.getSonBoard().getId(),topic.getUser().getId()};
         return preUpdate(sql,obj);
     }
 

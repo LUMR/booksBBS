@@ -27,7 +27,7 @@
 
     <div id="content">
         <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <a href="login.jsp">用户登录</a></div>
-        <form align="center" action="update.jsp" method="post">
+        <form align="center" action="login_update.jsp" method="post">
             <table>
                 <tr>
                     <td>用户名:</td>

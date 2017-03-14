@@ -24,12 +24,10 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public void addTopic(Topic topic) {
+    public int addTopic(Topic topic) {
         TopicDaoImpl topicDao = new TopicDaoImpl();
         int result = topicDao.addTopic(topic);
-        if (result>0)
-            System.out.println("添加成功");
-        else
-            System.out.println("添加失败");
+
+        return result;
     }
 }
