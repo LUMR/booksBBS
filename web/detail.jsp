@@ -31,6 +31,16 @@
             //获取子板块信息
             int sid = 0;
             int tid = 0;
+            int pages;
+            if (request.getParameter("pages") == null)
+                pages = 0;
+            else {
+                try{
+                    pages = Integer.parseInt(request.getParameter("pages"));
+                }catch (NumberFormatException e){
+                    pages = 0;
+                }
+            }
             try {
                 sid = Integer.parseInt(request.getParameter("sid"));
                 tid = Integer.parseInt(request.getParameter("tid"));
@@ -57,9 +67,13 @@
         </div>
 
         <div>
+            <%
+                String lastpages = "detail.jsp?sid="+sid+"&tid="+tid+"&pages="+(pages>0?pages-1:0);
+                String nextpages = "detail.jsp?sid="+sid+"&tid="+tid+"&pages="+(pages+1);
+            %>
             <a href="<%="post.jsp?sid="+sonBoard.getId()%>"><img src="image/post.gif" /></a>&nbsp;&nbsp;
             <a href="" ><img src="image/reply.gif" /></a><br />
-            <a href="#">上一页</a> <a href="#">下一页</a>
+            <a href="<%=lastpages%>">上一页</a> <a href="<%=nextpages%>">下一页</a>
         </div>
 
         <!--文章内容-->
@@ -72,7 +86,7 @@
             <tr>
                 <td width="20%">
                     <%=topic.getUser().getName()%><br />
-                    <img src="image/head/1.gif" /><br />
+                    <img src="image/head/<%=topic.getUser().getHead()%>" /><br />
                     注册:<%=topic.getUser().getRegDate()%>
                 </td>
                 <td>
@@ -81,18 +95,21 @@
                     <span>发表：[<%=topic.getCreateDate()%>] </span>
                 </td>
             </tr>
+
             <!--获取回复-->
             <%
                 ReplyService replyService = new ReplyServiceImpl();
-                List<Reply> replies = replyService.getAllReply(topic);
+                List<Reply> replies = replyService.getAllReply(topic,pages*10);
+                int floots = 1+pages*10;
                 for (Reply reply : replies) {
             %>
             <tr>
                 <td width="20%">
-                    <%=reply.getUser().getName()%><br /><img src="image/head/2.gif" />
+                    <strong><%=reply.getUser().getName()%></strong><br /><img src="image/head/<%=reply.getUser().getHead()%>" />
                     <br />注册:<%=reply.getUser().getRegDate()%>
                 </td>
                 <td>
+                    <span><%=floots++%>楼:</span>
                     <p><%=reply.getContent()%></p>
                     <hr />
                     <span>发表：[<%=reply.getCreateDate()%>]  最后修改:[<%=reply.getAlterDate()%>]</span>
@@ -102,7 +119,7 @@
                 }
             %>
         </table>
-        <div style="padding:10px;"><a href="#">上一页</a> <a href="#">下一页</a></div>
+        <div style="padding:10px;"><a href="<%=lastpages%>">上一页</a> <a href="<%=nextpages%>">下一页</a></div>
 
         <!--回复表单-->
         <%

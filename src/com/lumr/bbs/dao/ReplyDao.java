@@ -10,7 +10,8 @@ import java.util.List;
  * Created by fsweb on 17-3-7.
  */
 public interface ReplyDao {
-    List<Reply> get(Topic topic);
+    List<Reply> getAll(Topic topic);
+    List<Reply> getReply(Topic topic,int pages);
     int getReplyNum(Topic topic);
 
     int addReply(Reply reply);

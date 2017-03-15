@@ -83,7 +83,7 @@ public class BaseDao {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = "jdbc:mysql://192.168.1.107:3306/bbs";
+        String url = "jdbc:mysql://localhost:3306/bbs";
         String urlDefault = "??characterEncoding=utf8&useSSL=true";
         String name = "webuser";
         String password = "wwwlumr";

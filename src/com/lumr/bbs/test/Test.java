@@ -19,7 +19,7 @@ public class Test {
 //        MainBoardDaoImpl mainBoardDao = new MainBoardDaoImpl();
 //        test.showMainBoard();
 //        List<MainBoard> list = mainBoardDao.getAll();
-//        test.showSonBoard(list.get(0));
+//        test.showSonBoard(list.getAll(0));
         test.showUser();
 //        User my = new User("ll","kkk","男");
 //        System.out.println(my);

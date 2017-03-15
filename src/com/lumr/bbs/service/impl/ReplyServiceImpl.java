@@ -15,7 +15,13 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public List<Reply> getAllReply(Topic topic) {
         ReplyDaoImpl replyDao = new ReplyDaoImpl();
-        return replyDao.get(topic);
+        return replyDao.getAll(topic);
+    }
+
+    @Override
+    public List<Reply> getAllReply(Topic topic, int pages) {
+        ReplyDaoImpl replyDao = new ReplyDaoImpl();
+        return replyDao.getReply(topic,pages);
     }
 
     @Override

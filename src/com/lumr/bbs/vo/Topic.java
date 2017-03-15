@@ -54,7 +54,7 @@ public class Topic {
 
     public List<Reply> getReply(){
         ReplyDao replyDao = new ReplyDaoImpl();
-        return replyDao.get(this);
+        return replyDao.getAll(this);
     }
 
     @Override
@@ -122,6 +122,7 @@ public class Topic {
                 user.setName(result.getString("name"));
                 user.setRegDate(result.getDate("regDate"));
                 user.setGender(result.getString("gender"));
+                user.setHead(result.getString("head"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

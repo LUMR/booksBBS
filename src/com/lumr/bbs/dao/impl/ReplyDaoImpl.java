@@ -16,13 +16,39 @@ import java.util.List;
  */
 public class ReplyDaoImpl extends BaseDao implements ReplyDao {
     @Override
-    public List<Reply> get(Topic topic) {
+    public List<Reply> getAll(Topic topic) {
         getConn();
         String sql = "select * from reply where tid = ?";
         List<Reply> list = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,topic.getId());
+            result = pstmt.executeQuery();
+            while (result.next()){
+                User user = new User(result.getInt(5));
+                Reply reply = new Reply(result.getInt(1),result.getString(2),result.getTimestamp(3),
+                        result.getTimestamp(4),user,topic);
+                reply.setUser();
+                list.add(reply);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeAll();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Reply> getReply(Topic topic, int pages) {
+        getConn();
+        String sql = "select * from reply where tid = ? limit ?,10";
+        List<Reply> list = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,topic.getId());
+            pstmt.setInt(2,pages);
             result = pstmt.executeQuery();
             while (result.next()){
                 User user = new User(result.getInt(5));

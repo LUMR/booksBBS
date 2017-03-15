@@ -102,6 +102,7 @@ public class Reply {
                 user.setName(result.getString("name"));
                 user.setRegDate(result.getDate("regDate"));
                 user.setGender(result.getString("gender"));
+                user.setHead(result.getString("head"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
