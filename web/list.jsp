@@ -26,6 +26,17 @@
 
     <div id="content">
         <%
+            //获取页数
+            int pages;
+            if (request.getParameter("pages") == null)
+                pages = 0;
+            else {
+                try {
+                    pages = Integer.parseInt(request.getParameter("pages"));
+                } catch (NumberFormatException e) {
+                    pages = 0;
+                }
+            }
             //获取子板块信息
             int sid;
             try {
@@ -39,16 +50,19 @@
             if (sonBoard == null) {
                 out.print("<h2>没有此主版块</h2>");
                 return;
-            }else {
+            }
         %>
         <div id="smallNav">&gt;&gt; <a href="index.jsp">论坛首页</a> &gt;&gt; <%=sonBoard.getName()%></div>
         <div>
+            <%
+                //页数计算
+                int lastPages = pages>0?pages-1:0;
+                int nextPages = pages+1;
+            %>
             <a href="<%="post.jsp?sid="+sonBoard.getId()%>"><img src="image/post.gif" /></a><br />
-            <a href="#">上一页</a> <a href="#">下一页</a>
+            <a href="<%="list.jsp?sid="+sid+"&pages="+lastPages%>">上一页</a> <a href="<%="list.jsp?sid="+sid+"&pages="+nextPages%>">下一页</a>
         </div>
-        <%
-            }
-        %>
+
         <!--文章列表-->
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
@@ -59,7 +73,7 @@
             <%
                 //获取子文章
                 TopicService topicService = new TopicServiceImpl();
-                List<Topic> T_list = topicService.getAllTopic(sonBoard);
+                List<Topic> T_list = topicService.getAllTopic(sonBoard,pages);
                 int replyNum;
                 for (Topic aTopic: T_list) {
                     ReplyService replyService = new ReplyServiceImpl();
@@ -75,7 +89,7 @@
                 }
             %>
         </table>
-        <div style="padding:10px;"><a href="#">上一页</a> <a href="#">下一页</a></div>
+        <div style="padding:10px;"><a href="<%="list.jsp?sid="+sid+"&pages="+lastPages%>">上一页</a> <a href="<%="list.jsp?sid="+sid+"&pages="+nextPages%>">下一页</a></div>
     </div>  <!--content end-->
 
     <%--footer--%>

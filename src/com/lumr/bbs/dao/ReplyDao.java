@@ -10,7 +10,15 @@ import java.util.List;
  * Created by fsweb on 17-3-7.
  */
 public interface ReplyDao {
-    List<Reply> getAll(Topic topic);
+    /**
+     * 获取所有回复
+     */
+    List<Reply> getReply(Topic topic);
+
+    /**
+     * 获取部分回复
+     * @param pages 获取回复页数,每页10个
+     */
     List<Reply> getReply(Topic topic,int pages);
     int getReplyNum(Topic topic);
 

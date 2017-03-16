@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface TopicDao {
     List<Topic> get(SonBoard sonBoard);
+    List<Topic> get(SonBoard sonBoard,int pages);
 
     List<Topic> getBySid(int sid);
 

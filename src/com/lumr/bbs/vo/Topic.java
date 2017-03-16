@@ -54,7 +54,7 @@ public class Topic {
 
     public List<Reply> getReply(){
         ReplyDao replyDao = new ReplyDaoImpl();
-        return replyDao.getAll(this);
+        return replyDao.getReply(this);
     }
 
     @Override

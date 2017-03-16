@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ReplyDaoImpl extends BaseDao implements ReplyDao {
     @Override
-    public List<Reply> getAll(Topic topic) {
+    public List<Reply> getReply(Topic topic) {
         getConn();
         String sql = "select * from reply where tid = ?";
         List<Reply> list = new ArrayList<>();
@@ -48,7 +48,7 @@ public class ReplyDaoImpl extends BaseDao implements ReplyDao {
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,topic.getId());
-            pstmt.setInt(2,pages);
+            pstmt.setInt(2,pages*10);
             result = pstmt.executeQuery();
             while (result.next()){
                 User user = new User(result.getInt(5));

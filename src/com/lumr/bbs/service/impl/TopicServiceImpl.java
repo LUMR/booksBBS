@@ -18,6 +18,12 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
+    public List<Topic> getAllTopic(SonBoard sonBoard, int pages) {
+        TopicDaoImpl topicDao = new TopicDaoImpl();
+        return topicDao.get(sonBoard,pages);
+    }
+
+    @Override
     public Topic getTopicById(int id, SonBoard sonBoard) {
         TopicDaoImpl topicDao = new TopicDaoImpl();
         return topicDao.getTopicById(id,sonBoard);

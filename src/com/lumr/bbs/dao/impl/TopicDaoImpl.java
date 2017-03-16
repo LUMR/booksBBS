@@ -15,6 +15,13 @@ import java.util.List;
  * Created by fsweb on 17-3-7.
  */
 public class TopicDaoImpl extends BaseDao implements TopicDao{
+    //查询的结果数量
+    private int resultNum;
+
+    public TopicDaoImpl() {
+        resultNum = 20;
+    }
+
     @Override
     public List<Topic> get(SonBoard sonBoard) {
         getConn();
@@ -24,6 +31,31 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,sonBoard.getId());
+            result = pstmt.executeQuery();
+            while (result.next()){
+                Topic topic = new Topic(result.getInt(1),result.getString(2),
+                        result.getString(3),result.getTimestamp(4),sonBoard,
+                        new User(result.getInt(6)));
+                topic.setUser();
+                list.add(topic);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Topic> get(SonBoard sonBoard, int pages) {
+        getConn();
+        String sql = "select id,title,content,createDate,sid,uid " +
+                "from topic where sid = ? order by createDate desc limit ?,?";
+        List<Topic> list = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,sonBoard.getId());
+            pstmt.setInt(2,pages*10);
+            pstmt.setInt(3,resultNum);
             result = pstmt.executeQuery();
             while (result.next()){
                 Topic topic = new Topic(result.getInt(1),result.getString(2),
@@ -95,5 +127,13 @@ public class TopicDaoImpl extends BaseDao implements TopicDao{
         String sql = "delete from topic where id = ?";
         Object[] obj = new Object[]{topic.getId()};
         return preUpdate(sql,obj);
+    }
+
+    public int getResultNums() {
+        return resultNum;
+    }
+
+    public void setResultNums(int resultNums) {
+        this.resultNum = resultNums;
     }
 }

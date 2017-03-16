@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface TopicService {
     List<Topic> getAllTopic(SonBoard sonBoard);
+    List<Topic> getAllTopic(SonBoard sonBoard,int pages);
 
     Topic getTopicById(int id, SonBoard sonBoard);
     int addTopic(Topic topic);

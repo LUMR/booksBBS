@@ -18,14 +18,18 @@
     //验证注册信息
     String name = request.getParameter("name");
     String password = request.getParameter("password");
+//    User user = (User)request.getAttribute("user");
     UserService userService = new UserServiceImpl();
-    User user = new User(name,password);
+//    if (user == null)
+       User user = new User(name, password);
     switch (userService.login(user)){
         case 1:
             request.setAttribute("mess","登陆成功");
             Cookie cookie = new Cookie("user",user.getName());
+//            Cookie cookie1 = new Cookie("password",user.getPassword());
             session.setAttribute("user",user);
             response.addCookie(cookie);
+//            response.addCookie(cookie1);
             response.sendRedirect("index.jsp");
             break;
         case 0:

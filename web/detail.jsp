@@ -90,6 +90,7 @@
                     注册:<%=topic.getUser().getRegDate()%>
                 </td>
                 <td>
+                    <span>楼主:</span>
                     <p><%=topic.getContent()%></p>
                     <hr />
                     <span>发表：[<%=topic.getCreateDate()%>] </span>
@@ -99,8 +100,8 @@
             <!--获取回复-->
             <%
                 ReplyService replyService = new ReplyServiceImpl();
-                List<Reply> replies = replyService.getAllReply(topic,pages*10);
-                int floots = 1+pages*10;
+                List<Reply> replies = replyService.getAllReply(topic,pages);
+                int floots = 1+pages*10;//楼层数
                 for (Reply reply : replies) {
             %>
             <tr>

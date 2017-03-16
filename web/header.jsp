@@ -8,14 +8,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <div id="header">
+    <%!
+        //静态变量
+        int count = 0;
+    %>
     <%
         /*采用cookie的方式
         Cookie[] cookie = request.getCookies();
-        String headerUser = null;
+        String username = null;
+        String password = null;
         if (cookie != null) {
             for (Cookie aCookie : cookie) {
-                if (aCookie.getName().equals("headerUser"))
-                    headerUser = aCookie.getValue();
+                if (aCookie.getName().equals("user"))
+                    username = aCookie.getValue();
+                if (aCookie.getName().equals("password"))
+                    password = aCookie.getValue();
+            }
+            if (username != null && password != null) {
+                User user = new User(username,password);
+                request.setAttribute("user",user);
+                request.getRequestDispatcher("login_update.jsp").forward(request,response);
             }
         }
         */
@@ -32,8 +44,10 @@
         您尚未&nbsp;&nbsp; <a href="login.jsp">登录</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="register.jsp">注册</a>&nbsp;&nbsp; |
         <%
         }else {
+                count++;
         %>
-        你好！<h><%=headerUser.getName()%></h>&nbsp;<span><a href="logout.jsp">注销</a></span>
+        你好！<strong><%=headerUser.getName()%></strong>&nbsp;<span><a href="logout.jsp">注销</a></span>
+        <span>该网页已被访问<%=count%>次.</span>
         <%
             }
 
