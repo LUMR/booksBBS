@@ -19,6 +19,9 @@
 <head>
     <title>欢迎访问擎华教育论坛</title>
     <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/ckeditor/ckeditor.js"></script>
+    <script src="js/editor.js"></script>
+    <%--<script src="js/ckeditor/samples/js/sample.js"></script>--%>
 </head>
 <body>
 <div id="container">
@@ -139,10 +142,10 @@
                     <th colspan="2" class="textAlignleft">回复帖子</th>
                 </tr>
                 <tr>
-                    <td width="15%">内容</td>
+                    <%--<td width="15%">内容</td>--%>
                     <td>
                         <label>
-                            <textarea name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
+                            <textarea id="editor" name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
                         </label><br />
                         (不能大于:1000字)
                     </td>
@@ -156,6 +159,9 @@
             </div>
             <p class="message"><%=(mess != null)?mess:""%></p>
         </form>
+        <script>
+            CKEDITOR.replace('editor');
+        </script>
     </div>  <!--content end-->
 
     <%--footer--%>

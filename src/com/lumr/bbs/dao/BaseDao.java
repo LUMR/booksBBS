@@ -53,7 +53,7 @@ public class BaseDao {
             //指定数据库驱动
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
+            e.printStackTrace();//打印驱动
             System.out.println("找不到数据库驱动");
         }
         try {

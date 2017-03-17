@@ -11,7 +11,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>欢迎访问擎华教育论坛</title>
-<link href="style/style.css" rel="stylesheet" type="text/css" />
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/ckeditor/ckeditor.js"></script>
+    <script src="js/editor.js"></script>
 </head>
 
 <body>
@@ -55,13 +57,14 @@
                     <td width="15%">标题</td>
                     <td><label>
                         <input type="text" name="title" size="50" value="<%=title!=null?title:""%>"/>
-                    </label></td>
+                        </label>
+                    </td>
                 </tr>
                 <tr>
                     <td width="15%">内容</td>
                     <td>
                         <label>
-                            <textarea name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
+                            <textarea id="editor" name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
                         </label><br />
                     (不能大于:1000字)
                     </td>
@@ -69,6 +72,7 @@
                 <tr>
                 </tr>
             </table>
+            <script>CKEDITOR.replace('editor');</script>
             <div class="textAlignCenter" style="padding:10px;">
         	    <input type="submit"  value="提交"/>
         	    <input type="reset" value="重置" />
