@@ -46,7 +46,7 @@ var CKBUILDER_CONFIG = {
 		'.mailmap',
 		'node_modules',
 		'package.json',
-		'README.md',
+		'README.MD.md',
 		'tests'
 	],
 	plugins : {

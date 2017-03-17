@@ -19,6 +19,7 @@
 <head>
     <title>欢迎访问擎华教育论坛</title>
     <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/js.js"></script>
     <script src="js/ckeditor/ckeditor.js"></script>
     <script src="js/editor.js"></script>
     <%--<script src="js/ckeditor/samples/js/sample.js"></script>--%>
@@ -68,15 +69,21 @@
             &gt;&gt; <a href="index.jsp">论坛首页</a>
             &gt;&gt; <a href="<%="list.jsp?sid="+sid%>"><%=sonBoard.getName()%></a> &gt;&gt; 帖子信息
         </div>
-
+        <!--上下页计算-->
         <div>
             <%
-                String lastpages = "detail.jsp?sid="+sid+"&tid="+tid+"&pages="+(pages>0?pages-1:0);
-                String nextpages = "detail.jsp?sid="+sid+"&tid="+tid+"&pages="+(pages+1);
+                String pageURL = "detail.jsp?sid="+sid+"&tid="+tid+"&pages=";
+                String lastpages = pageURL+(pages>0?pages-1:0);
+                String nextpages = pageURL+(pages+1);
             %>
             <a href="<%="post.jsp?sid="+sonBoard.getId()%>"><img src="image/post.gif" /></a>&nbsp;&nbsp;
             <a href="" ><img src="image/reply.gif" /></a><br />
-            <a href="<%=lastpages%>">上一页</a> <a href="<%=nextpages%>">下一页</a>
+            <a href="<%=lastpages%>">上一页</a>
+            <%
+
+            %>
+
+            <a href="<%=nextpages%>">下一页</a>
         </div>
 
         <!--文章内容-->
@@ -107,6 +114,7 @@
                 int floots = 1+pages*10;//楼层数
                 for (Reply reply : replies) {
             %>
+
             <tr>
                 <td width="20%">
                     <strong><%=reply.getUser().getName()%></strong><br /><img src="image/head/<%=reply.getUser().getHead()%>" />
@@ -116,9 +124,16 @@
                     <span><%=floots++%>楼:</span>
                     <p><%=reply.getContent()%></p>
                     <hr />
-                    <span>发表：[<%=reply.getCreateDate()%>]  最后修改:[<%=reply.getAlterDate()%>]</span>
+                    <span>发表：[<%=reply.getCreateDate()%>]&nbsp;&nbsp;最后修改:[<%=reply.getAlterDate()%>]</span>
+
+                    <%
+                        //判断是否有权修改回复
+                        if (headerUser!=null&&headerUser.getName().equals(reply.getUser().getName()))
+                            out.print("<span><a href=\"\" onclick=\"\">删除</a>&nbsp;&nbsp;<a href=\"\" onclick=\"\">修改</a></span>");
+                    %>
                 </td>
             </tr>
+
             <%
                 }
             %>

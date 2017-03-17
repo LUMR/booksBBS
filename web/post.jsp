@@ -64,7 +64,7 @@
                     <td width="15%">内容</td>
                     <td>
                         <label>
-                            <textarea id="editor" name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
+                            <textarea class="ckeditor" name="content" cols="80" rows="20"><%=content != null ? content : ""%></textarea>
                         </label><br />
                     (不能大于:1000字)
                     </td>
@@ -72,7 +72,7 @@
                 <tr>
                 </tr>
             </table>
-            <script>CKEDITOR.replace('editor');</script>
+            <%--<script>CKEDITOR.replace('editor');</script>--%>
             <div class="textAlignCenter" style="padding:10px;">
         	    <input type="submit"  value="提交"/>
         	    <input type="reset" value="重置" />

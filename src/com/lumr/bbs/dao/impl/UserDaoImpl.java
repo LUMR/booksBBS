@@ -34,16 +34,17 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             result = stmt.executeQuery(sql);
             result.next();
             user.setPassword(result.getString(1));
-            sql = "select id,password,gender,regDate from user where name = ?";
+            sql = "select id,password,gender,head,regDate from user where name = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,user.getName());
             result = pstmt.executeQuery();
             if (result.next()) {
                 String pwd =  result.getString(2);
                 if (pwd.equals(user.getPassword())) {
-                    user.setId(result.getInt(1));
-                    user.setGender(result.getString(3));
-                    user.setRegDate(result.getDate(4));
+                    user.setId(result.getInt("id"));
+                    user.setGender(result.getString("gender"));
+                    user.setRegDate(result.getDate("regDate"));
+                    user.setHead(result.getString("head"));
                     return 1;
                 }
                 else

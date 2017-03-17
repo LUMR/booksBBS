@@ -1,6 +1,10 @@
 /**
- * 表单验证脚本
+ * 脚本
  * Created by fsweb on 17-3-15.
+ */
+/**
+ * 表单验证脚本
+ * @returns {boolean}
  */
 function registerCheck() {
     var username = document.getElementsByName("username")[0].value;
@@ -18,4 +22,11 @@ function registerCheck() {
         alert("两次密码不一致,来自js脚本");
         return false;
     }
+}
+/**
+ * 删除回复确认
+ * @returns {boolean}
+ */
+function replyDelete() {
+    return confirm("确定要删除该回复吗?");
 }

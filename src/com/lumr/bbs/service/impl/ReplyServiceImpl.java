@@ -31,6 +31,14 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public int getRaplyPages(Topic topic) {
+        ReplyDao replyDao = new ReplyDaoImpl();
+        int nums = replyDao.getReplyNum(topic);
+        int pages = nums%10==0 ? nums/10:nums/10+1;
+        return pages;
+    }
+
+    @Override
     public int addReply(Reply reply) {
         ReplyDaoImpl replyDao = new ReplyDaoImpl();
         int result = replyDao.addReply(reply);

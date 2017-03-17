@@ -20,6 +20,10 @@ public interface ReplyDao {
      * @param pages 获取回复页数,每页10个
      */
     List<Reply> getReply(Topic topic,int pages);
+
+    /**
+     * 获取回复数量
+     */
     int getReplyNum(Topic topic);
 
     int addReply(Reply reply);
