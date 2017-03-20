@@ -46,7 +46,8 @@
         }else {
                 count++;
         %>
-        你好！<a href="userManager.jsp" ><strong><%=headerUser.getName()%></strong></a>&nbsp;
+        <a href="index.jsp">主页</a>
+        <span>你好！</span>&nbsp;<a href="userManager.jsp" ><strong><%=headerUser.getName()%></strong></a>&nbsp;
         <span><a href="logout.jsp">注销</a></span>
         <span>该网页已被访问<%=count%>次.</span>
         <%

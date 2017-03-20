@@ -129,8 +129,10 @@
                     <%
                         //判断是否有权修改回复
                         if (headerUser!=null&&headerUser.getName().equals(reply.getUser().getName()))
-                            out.print("<span><a href=\"\" onclick=\"\">删除</a>&nbsp;&nbsp;<a href=\"\" onclick=\"\">修改</a></span>");
+                            out.print("<span><a href=\"javascript:replyDelete()\" location=\"reply_delete.jsp?rid=\""+reply.getId()+">删除</a>&nbsp;&nbsp;" +
+                                    "<a href=\"\" onclick=\"\">修改</a></span>");
                     %>
+                    <%--<a href="javascript:return replyDelete()" location="reply_delete.jsp?rid="></a>--%>
                 </td>
             </tr>
 

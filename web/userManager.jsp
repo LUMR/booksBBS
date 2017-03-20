@@ -31,10 +31,12 @@
         <tr>
             <th>ID</th>
             <td><p><%=user.getId()%></p></td>
+            <td><input type="number" name="userId"></td>
         </tr>
         <tr>
             <th>名字</th>
             <td><p><%=user.getName()%></p></td>
+            <td><input type="text" name="userName"></td>
         </tr>
         <tr>
             <th>性别</th>

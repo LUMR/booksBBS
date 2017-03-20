@@ -28,5 +28,6 @@ function registerCheck() {
  * @returns {boolean}
  */
 function replyDelete() {
-    return confirm("确定要删除该回复吗?");
+    if (confirm("确定要删除该回复吗?"))
+        window.location="reply_delete.jsp";
 }
