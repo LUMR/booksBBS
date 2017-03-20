@@ -28,6 +28,8 @@ public interface UserDao {
      */
     int update(User user);
 
+    int updateHead(User user);
+
     /**
      * 判断用户是否存在
      * @return 1.存在 0.不存在 -1.数据库错误

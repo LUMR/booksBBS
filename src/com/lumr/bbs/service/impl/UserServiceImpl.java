@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         UserDaoImpl userDao = new UserDaoImpl();
-        int update = userDao.update(user);
+        int update = userDao.updateHead(user);
         switch (update){
             case 1:
                 System.out.println("更新成功");

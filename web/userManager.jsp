@@ -26,7 +26,7 @@
 %>
 <%----%>
 <div id="content">
-<form action="user_update.jsp" method="post" enctype="multipart/form-data">
+<form action="user_update.jsp" method="post" enctype="multipart/form-data" >
     <table>
         <tr>
             <th>ID</th>

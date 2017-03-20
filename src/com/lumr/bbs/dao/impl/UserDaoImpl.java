@@ -102,6 +102,23 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     }
 
     @Override
+    public int updateHead(User user) {
+        conn = getConn();
+        String sql = "update user set head = ? where id = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,user.getHead());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        finally {
+            closeAll();
+        }
+    }
+
+    @Override
     public int isExist(User uset) {
         conn = getConn();
         String sql = "select * from user where name = ?";
