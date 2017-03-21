@@ -2,6 +2,7 @@
 <%@ page import="com.lumr.bbs.service.*" %>
 <%@ page import="com.lumr.bbs.service.impl.*" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
   Created by IntelliJ IDEA.
   User: lumr
@@ -28,21 +29,21 @@
               <th>最后发表</th>
           </tr>
           <%
-              MainBoardService mainBoardService = new MainBoardServiceImpl();
+              List<MainBoard> M_list = (List<MainBoard>)request.getAttribute("M_list");
+              String url;
               SonBoardService sonBoardService = new SonBoardServiceImpl();
-              TopicService topicService = new TopicServiceImpl();
-              List<MainBoard> M_list = mainBoardService.getAllMainBoard();
-              String url = "";
-
+              TopicService topicService;
+              topicService = new TopicServiceImpl();
               for (MainBoard aM_list : M_list) {
-
           %>
+
           <tr>
               <td colspan="4"><%=aM_list.getName()%>
               </td>
           </tr>
           <%
               //获取子板块
+
               List<SonBoard> S_list = sonBoardService.getAllSonBoard(aM_list);
               for (SonBoard aS_list : S_list) {
                   //获取子板块主题
@@ -51,7 +52,7 @@
           <tr>
               <td width="5%">&nbsp;</td>
               <td><img src="image/board.gif"/>
-                  <a href=<%="list.jsp?sid="+aS_list.getId()%>><%=aS_list.getName()%></a>
+                  <a href=<%="list?sid="+aS_list.getId()%>><%=aS_list.getName()%></a>
               </td>
               <%
                   if (T_list.size() == 0){
