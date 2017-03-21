@@ -96,7 +96,7 @@
             <tr>
                 <td width="20%">
                     <%=topic.getUser().getName()%><br />
-                    <img src="image/head/<%=topic.getUser().getHead()%>" /><br />
+                    <img class="head" src="image/head/<%=topic.getUser().getHead()%>" /><br />
                     注册:<%=topic.getUser().getRegDate()%>
                 </td>
                 <td>
@@ -117,7 +117,7 @@
 
             <tr>
                 <td width="20%">
-                    <strong><%=reply.getUser().getName()%></strong><br /><img src="image/head/<%=reply.getUser().getHead()%>" />
+                    <strong><%=reply.getUser().getName()%></strong><br /><img class="head" src="image/head/<%=reply.getUser().getHead()%>" />
                     <br />注册:<%=reply.getUser().getRegDate()%>
                 </td>
                 <td>
