@@ -41,9 +41,11 @@
                         //新建文件
                         //
                         File temp = new File(fileName);//构建一个临时文件,防止文件名错误
-                        File file = new File(uploadPath,temp.getName());
-                        item.write(file);
+                        String Type = temp.getName().substring(temp.getName().lastIndexOf("."));
                         User user = (User)session.getAttribute("user");
+                        fileName = user.getId()+Type;
+                        File file = new File(uploadPath,fileName);
+                        item.write(file);
                         user.setHead(fileName);
                         UserService userService = new UserServiceImpl();
                         userService.update(user);

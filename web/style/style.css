@@ -20,8 +20,9 @@ body{font-size:12px;}
 a{text-decoration:none; color:#2f5fa1;}
 a:hover{text-decoration:underline;}
 #smallNav{font-weight:bold; padding:10px 5px;}
-#Ttitle{padding:10px; background-color:#e0f0f9; font-weight:bold;}
+#Ttitle {padding:10px; background-color:#e0f0f9; font-weight:bold;}
 .textAlignleft{text-align:left;}
 input,textarea{border:1px solid #a6cbe7;}
 /*新增样式*/
 .message {color: tomato;}
+img.head {width: 70px;height: auto}

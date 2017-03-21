@@ -56,7 +56,7 @@
             <th>上传</th>
         </tr>
         <tr>
-            <td><img src="image/head/<%=user.getHead()%>"></td>
+            <td><img class="head" src="image/head/<%=user.getHead()%>"></td>
             <td><input type="file" name="head"></td>
             <td><input type="submit" value="上传"></td>
         </tr>

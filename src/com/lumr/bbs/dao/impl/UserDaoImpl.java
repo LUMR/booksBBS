@@ -108,6 +108,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,user.getHead());
+            pstmt.setInt(2,user.getId());
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
